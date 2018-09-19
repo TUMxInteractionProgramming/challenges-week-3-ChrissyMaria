@@ -5,64 +5,73 @@
     <title>chatter|app</title>
 
     <!-- #4 embed the #roboto #font. This needs to go above your css -->
-    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500" rel="stylesheet" />
 
     <!-- #4 #sweat out the styles by creating an #external css -->
     <link rel="stylesheet" href="css/style.css" />
-
+    <!-- to use JQuery-->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="js/main.js"></script>
     
 </head>
 <body>
 <!-- #4 #one #page -->
 <div id="channels">
-    <h1>
+    <h1 id = "app-bar-channel">
         <!-- #3 #channels #moocus the talkative duck-->
-        <img src="http://ip.lfe.mw.tum.de/sections/moocus.png" alt="Moocus, the chatty duck!" style="height: 56px;">
+        <img id = "duck" src="http://ip.lfe.mw.tum.de/sections/moocus.png" alt="Moocus, the chatty duck!">
         chatter|app
     </h1>
 
     <!-- #3 #channels #list is much better, than headlines or paragraphs... -->
     <ul>
-        <li>#Yummy
+        <li onclick="SwitchChannel('#Yummy');">#Yummy
             <!-- #3 #channels #favorite this is not starred -->
-            <img src="http://ip.lfe.mw.tum.de/sections/star-o.png" alt="not starred">
+            <img class = "channel-meta" src="https://makeyourownapp.github.io/chatter-app/sprints4-6/img/chevron-right.png" alt="chevron-right">
+            <img class = "channel-meta" src="http://ip.lfe.mw.tum.de/sections/star-o.png" alt="not starred">
         </li>
-
         <!-- #4 #channel is #highlighted -->
-        <li class="selected">
+        <li onclick="SwitchChannel('#SevenContinents');" class="selected">
             #SevenContinents
             <!-- #3 #channels #favorite this is starred -->
-            <img src="http://ip.lfe.mw.tum.de/sections/star.png" alt="starred">
+            <img class = "channel-meta" src="https://makeyourownapp.github.io/chatter-app/sprints4-6/img/chevron-right.png" alt="chevron-right">
+            <img class = "channel-meta" src="http://ip.lfe.mw.tum.de/sections/star.png" alt="starred">
         </li>
-        <li>#KillerApp
+        <li onclick="SwitchChannel('#KillerApp');">#KillerApp
             <!-- #3 #channels #favorite this is not starred -->
-            <img src="http://ip.lfe.mw.tum.de/sections/star-o.png" alt="not starred">
+            <img class = "channel-meta" src="https://makeyourownapp.github.io/chatter-app/sprints4-6/img/chevron-right.png" alt="chevron-right">
+            <img class = "channel-meta" src="http://ip.lfe.mw.tum.de/sections/star-o.png" alt="not starred">
         </li>
-        <li>#FirstPersonOnMars
+        <li onclick="SwitchChannel('#FirstPersonOnMars');">#FirstPersonOnMars
             <!-- #3 #channels #favorite this is starred -->
-            <img src="http://ip.lfe.mw.tum.de/sections/star.png" alt="starred">
+            <img class = "channel-meta" src="https://makeyourownapp.github.io/chatter-app/sprints4-6/img/chevron-right.png" alt="chevron-right">
+            <img class = "channel-meta" src="http://ip.lfe.mw.tum.de/sections/star.png" alt="starred">
         </li>
-        <li>#Octoberfest
+        <li onclick="SwitchChannel('#Octoberfest');">#Octoberfest
             <!-- #3 #channels #favorite this is not starred -->
-            <img src="http://ip.lfe.mw.tum.de/sections/star-o.png" alt="not starred">
+            <img class = "channel-meta" src="https://makeyourownapp.github.io/chatter-app/sprints4-6/img/chevron-right.png" alt="chevron-right">
+            <img class = "channel-meta" src="http://ip.lfe.mw.tum.de/sections/star-o.png" alt="not starred">
         </li>
+        
+        
     </ul>
+    
 
     <!-- #3 #tab-bar #container -->
     <!-- #4 #sweat #tab-bar -->
     <div id="tab-bar">
         <!-- #4 #tab-bar selected channel should be #highlighted -->
-        <button class="selected">
+        <button onclick="SelectTab('new');" id="new" class="selected">
             <!-- #3 #tab-bar #images -->
             <img src="http://ip.lfe.mw.tum.de/sections/lightbulb-o.png" alt="Bulb">
             New
         </button>
-        <button>
+        <button onclick="SelectTab('trending');" id="trending" >
             <!-- #3 #tab-bar #images -->
             <img src="http://ip.lfe.mw.tum.de/sections/fire.png" alt="Hot">
             Trending
         </button>
-        <button>
+        <button onclick="SelectTab('favorites');" id = "favorites">
             <!-- #3 #tab-bar #images -->
             <img src="http://ip.lfe.mw.tum.de/sections/star.png" alt="Star">
             Favorites
@@ -72,11 +81,12 @@
 
 <!-- #4 #one #page -->
 <div id="chat">
-    <h1>
+    <h1 id="app-bar-chat">
         #SevenContinents
-        <small>by
-            <strong>cheeses.yard.applies</strong>
+       <small id="location">by
+            <a href='http://w3w.co/cheeses.yard.applies' target='_blank'> <strong>cheeses.yard.applies</strong> </a>
         </small>
+        <img onclick="FillStar();" id="star-app-bar" src="http://ip.lfe.mw.tum.de/sections/star.png" alt="starred">
     </h1>
 
     <!-- #3 #chat #container -->
@@ -91,8 +101,8 @@
             Wed, June 20th, 13:37
             <em>15 min. left</em>
         </h3>
-        <p>What's the place you folks call home?</p>
-        <button>+5 min.</button>
+        <p>What's the place you folks call home?  <button>+5 min.</button> </p>
+       
     </div>
 
     <!-- #3 #chat #container -->
@@ -106,8 +116,8 @@
             Wed, June 20th, 13:39
             <em>4 min. left</em>
         </h3>
-        <p>BRISBANE! Hang loose!</p>
-        <button>+5 min.</button>
+        <p>BRISBANE! Hang loose!  <button>+5 min.</button> </p>
+
     </div>
 
     <!-- #3 #chat #container -->
@@ -121,8 +131,7 @@
             Wed, June 20th, 14:02
             <em>12 min. left</em>
         </h3>
-        <p>The big apple.</p>
-        <button>+5 min.</button>
+        <p>The big apple. <button>+5 min.</button> </p>
     </div>
 
     <!-- #3 #chat #container -->
@@ -136,8 +145,7 @@
             Wed, June 20th, 14:02
             <em>7 min. left</em>
         </h3>
-        <p>Eu sou um Cariocas.</p>
-        <button>+5 min.</button>
+        <p>Eu sou um Cariocas. <button>+5 min.</button> </p>
     </div>
 
     <!-- #3 #chat #container -->
@@ -151,9 +159,9 @@
             Wed, June 20th, 14:07
             <em>14 min. left</em>
         </h3>
-        <p>Greetings from the western cape!</p>
-        <button>+5 min.</button>
+        <p>Greetings from the western cape!  <button>+5 min.</button> </p>
     </div>
+    
 
     <!-- #3 #chat #container -->
     <!-- #4 #messages #class -->
@@ -166,9 +174,12 @@
             Wed, June 20th, 04:08
             <em>15 min. left</em>
         </h3>
-        <p>北京</p>
-        <button>+5 min.</button>
+        <p>北京  <button>+5 min.</button> </p>
     </div>
+    <div id="chat-bar">
+        <button onclick="$('#emojis').toggle();" id="emojis-button"><img src="http://ip.lfe.mw.tum.de/sections/smile-o.png" alt="smiley">
+        </button>
+        <div id="emojis"> &#x1F601; &#x1F602; &#x1F603; &#x1F604; &#x1F605; &#x1F60A; &#x1F60F; &#x1F61A;</div></div>
 </div>
 
 </body>
